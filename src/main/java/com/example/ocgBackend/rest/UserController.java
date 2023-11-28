@@ -1,23 +1,42 @@
 package com.example.ocgBackend.rest;
 
-import com.example.ocgBackend.persistence.model.User;
+import com.example.ocgBackend.rest.api.UserApi;
+import com.example.ocgBackend.rest.api.UserApiDelegate;
+import com.example.ocgBackend.rest.api.dto.Users;
 import com.example.ocgBackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.NativeWebRequest;
 
-import java.util.List;
+import java.util.Optional;
 
-@RestController
-@RequestMapping(path = "api/v1/user")
-public class UserController {
+@Component
+public class UserController implements UserApi, UserApiDelegate {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping(path = "all")
-    public List<User> getAllUsers() {
+    @Override
+    public ResponseEntity<Users> getUserPreferences() {
+        System.out.println("REQUEST");
         return userService.getAllUsers();
     }
+
+    @Override
+    public ResponseEntity<Void> testOperation(String body) {
+        System.out.println(body);
+        return ResponseEntity.ok(null);
+    }
+
+    @Override
+    public UserApiDelegate getDelegate() {
+        return UserApi.super.getDelegate();
+    }
+
+    @Override
+    public Optional<NativeWebRequest> getRequest() {
+        return UserApiDelegate.super.getRequest();
+    }
+
 }

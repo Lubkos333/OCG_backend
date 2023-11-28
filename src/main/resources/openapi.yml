@@ -1,0 +1,50 @@
+openapi: "3.0.0"
+info:
+  version: "1.0.0"
+  title: ocg api
+
+tags:
+  - name: "user"
+
+paths:
+  /rest/user/all:
+    get:
+      summary: user preferences
+      operationId: getUserPreferences
+      tags:
+        - "user"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+  /rest/user/test:
+    post:
+      summary: testOperation
+      operationId: testOperation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestDto'
+      tags:
+        - "user"
+      responses:
+        '200':
+          description: Successful operation
+components:
+  schemas:
+    Users:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserDto'
+    UserDto:
+      type: object
+      properties:
+        name:
+          type: string
+    TestDto:
+      type: string
