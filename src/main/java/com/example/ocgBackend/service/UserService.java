@@ -1,11 +1,10 @@
 package com.example.ocgBackend.service;
 
-import com.example.ocgBackend.persistence.model.User;
 import com.example.ocgBackend.persistence.repositories.UserRepository;
+import com.example.ocgBackend.rest.api.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserService {
@@ -13,7 +12,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll().stream().toList();
+    public ResponseEntity getAllUsers() {
+        return ResponseEntity.ok(
+                userRepository.findAll()
+                .stream()
+                .map(user -> new UserDto().name(user.getName())).toArray()
+                );
     }
 }
