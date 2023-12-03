@@ -25,6 +25,7 @@
 		<openapi.version>3.0.0</openapi.version>
 		<springfox-swagger.version>3.0.0</springfox-swagger.version>
 		<jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
+		<websocket.version>3.0.6</websocket.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -116,6 +117,36 @@
 			<artifactId>querydsl-core</artifactId>
 			<version>${querydsl.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+			<version>3.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>sockjs-client</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>stomp-websocket</artifactId>
+			<version>2.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.1.1-1</version>
+		</dependency>
 
 	</dependencies>
 
@@ -158,13 +189,13 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
+			<!--<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
 				<version>1.12.1</version>
 
 				<executions>
-					<!-- installing node and npm -->
+					&lt;!&ndash; installing node and npm &ndash;&gt;
 					<execution>
 						<id>Install node and npm</id>
 						<goals>
@@ -177,7 +208,7 @@
 						</configuration>
 					</execution>
 
-					<!-- running npm install -->
+					&lt;!&ndash; running npm install &ndash;&gt;
 					<execution>
 						<id>npm install</id>
 						<goals>
@@ -189,7 +220,7 @@
 						</configuration>
 					</execution>
 
-					<!-- generate api -->
+					&lt;!&ndash; generate api &ndash;&gt;
 					<execution>
 						<id>npm apigen</id>
 						<goals>
@@ -201,7 +232,7 @@
 						</configuration>
 					</execution>
 
-					<!-- build fe project -->
+					&lt;!&ndash; build fe project &ndash;&gt;
 					<execution>
 						<id>npm build</id>
 						<goals>
@@ -217,7 +248,7 @@
 					<nodeVersion>v18.17.1</nodeVersion>
 					<workingDirectory>../OCG_frontend</workingDirectory>
 				</configuration>
-			</plugin>
+			</plugin>-->
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
