@@ -36,6 +36,15 @@ public class User extends IdEntity {
         )
     List<Card> userCards;
     
+    @ManyToMany
+    @JoinTable(
+        name = "achievement_user",
+        joinColumns =
+        @JoinColumn(name = "user_id"), inverseJoinColumns =
+            @JoinColumn(name = "achievement_id")
+        )
+    List<Achievement> userAchievements;
+    
     public void setName(String name){
         this.name = name;
     }
@@ -74,5 +83,13 @@ public class User extends IdEntity {
    
    public List<Card> getUserCards(){
        return userCards;
+   }
+   
+   public void setUserAchievements(List<Achievement> achievements){
+       this.userAchievements = achievements;
+   }
+   
+   public List<Achievement> getUserAchievements(){
+       return userAchievements;
    }
 }

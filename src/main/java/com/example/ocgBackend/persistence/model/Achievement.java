@@ -7,7 +7,9 @@ package com.example.ocgBackend.persistence.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 import lombok.*;
 
 @Table(name = "achievements")
@@ -25,6 +27,9 @@ public class Achievement extends IdEntity {
     private String description;
     @Column(name = "achievemen_thresold")
     private int thresold;
+    
+    @ManyToMany(mappedBy = "userAchievements") // List in User class
+    List<User> achievementUsers;
     
     public void setName(String name){
         this.name = name;
@@ -48,6 +53,14 @@ public class Achievement extends IdEntity {
     
     public int getThresold(){
         return thresold;
+    }
+    
+    public void setAchievementUsers(List<User> users){
+        this.achievementUsers = users;
+    }
+    
+    public List<User> getAchievementUsers(){
+        return achievementUsers;
     }
 
     
