@@ -7,7 +7,9 @@ package com.example.ocgBackend.persistence.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 import lombok.*;
 
 @Table(name = "cards")
@@ -29,6 +31,9 @@ public class Card extends IdEntity{
     private int attack;
     @Column(name = "card_image")
     private String imagePath;
+    
+    @ManyToMany(mappedBy = "userCards") // List in User class
+    List<User> cardUsers;
     
     
     public void setName(String name){
@@ -69,6 +74,14 @@ public class Card extends IdEntity{
     
     public String getImagePath(){
         return imagePath;
+    }
+    
+    public void setCardUsers(List<User> users){
+        this.cardUsers = users;
+    }
+    
+    public List<User> getCardUsers(){
+        return cardUsers;
     }
     
 }

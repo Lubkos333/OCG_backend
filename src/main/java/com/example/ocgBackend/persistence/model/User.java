@@ -2,7 +2,11 @@ package com.example.ocgBackend.persistence.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 import lombok.*;
 
 @Table(name = "users")
@@ -23,6 +27,14 @@ public class User extends IdEntity {
     @Column(name = "user_email")
     private String email;
    
+    @ManyToMany
+    @JoinTable(
+        name = "card_user",
+        joinColumns =
+        @JoinColumn(name = "user_id"), inverseJoinColumns =
+            @JoinColumn(name = "card_id")
+        )
+    List<Card> userCards;
     
     public void setName(String name){
         this.name = name;
@@ -55,4 +67,12 @@ public class User extends IdEntity {
     public String getEmail(){
         return email;
     }
+    
+   public void setUserCards(List<Card> cards){
+       this.userCards = cards;
+   }
+   
+   public List<Card> getUserCards(){
+       return userCards;
+   }
 }
