@@ -22,8 +22,7 @@ public class User extends IdEntity {
     private int victoryCount;
     @Column(name = "user_email")
     private String email;
-    
-    public User(){}
+   
     
     public void setName(String name){
         this.name = name;
