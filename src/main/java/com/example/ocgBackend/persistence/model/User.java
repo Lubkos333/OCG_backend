@@ -5,8 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
+
 import lombok.*;
 
 @Table(name = "users")
@@ -26,7 +28,11 @@ public class User extends IdEntity {
     private int victoryCount;
     @Column(name = "user_email")
     private String email;
-   
+    
+    @OneToMany
+    @JoinColumn(name ="user_id")
+    public List<Friend> friends; //List of friends or pending friends
+
     @ManyToMany
     @JoinTable(
         name = "card_user",
