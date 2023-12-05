@@ -29,25 +29,24 @@ public class User extends IdEntity {
     @Column(name = "user_email")
     private String email;
     
-    @OneToMany
-    @JoinColumn(name ="user_id")
+    @OneToMany(mappedBy="user") // mapped in Friend class
     public List<Friend> friends; //List of friends or pending friends
 
     @ManyToMany
     @JoinTable(
-        name = "card_user",
+        name = "user_card",
         joinColumns =
-        @JoinColumn(name = "user_id"), inverseJoinColumns =
-            @JoinColumn(name = "card_id")
+        @JoinColumn(name = "user_ref"), inverseJoinColumns =
+            @JoinColumn(name = "card_ref")
         )
     List<Card> userCards;
     
     @ManyToMany
     @JoinTable(
-        name = "achievement_user",
+        name = "user_achievement",
         joinColumns =
-        @JoinColumn(name = "user_id"), inverseJoinColumns =
-            @JoinColumn(name = "achievement_id")
+        @JoinColumn(name = "user_ref"), inverseJoinColumns =
+            @JoinColumn(name = "achievement_ref")
         )
     List<Achievement> userAchievements;
     
@@ -97,5 +96,13 @@ public class User extends IdEntity {
    
    public List<Achievement> getUserAchievements(){
        return userAchievements;
+   }
+   
+   public void setUserFriends(List<Friend> friends){
+       this.friends = friends;
+   }
+   
+   public List<Friend> getUserFriends(){
+       return friends;
    }
 }
