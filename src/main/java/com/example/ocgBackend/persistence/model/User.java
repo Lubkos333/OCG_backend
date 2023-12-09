@@ -30,7 +30,7 @@ public class User extends IdEntity {
     private String email;
     
     @OneToMany(mappedBy="user") // mapped in Friend class
-    public List<Friend> friends; //List of friends or pending friends
+    private List<FriendRequest> friends; //List of friends or pending friends
 
     @ManyToMany
     @JoinTable(
@@ -39,7 +39,7 @@ public class User extends IdEntity {
         @JoinColumn(name = "user_ref"), inverseJoinColumns =
             @JoinColumn(name = "card_ref")
         )
-    List<Card> userCards;
+    private List<Card> userCards;
     
     @ManyToMany
     @JoinTable(
@@ -48,61 +48,6 @@ public class User extends IdEntity {
         @JoinColumn(name = "user_ref"), inverseJoinColumns =
             @JoinColumn(name = "achievement_ref")
         )
-    List<Achievement> userAchievements;
-    
-    public void setName(String name){
-        this.name = name;
-    }
-    
-    public String getName(){
-        return name;
-    }
-    
-    public void setPassword(String password){
-        this.password = password;
-    }
-    
-    public String getPassword(){
-        return password;
-    }
-    
-    public void setVictoryCount(int victoryCount){
-        this.victoryCount = victoryCount;
-    }
-    
-    public int getVictoryCount(){
-        return victoryCount;
-    }
-    
-    public void setEmail(String email){
-        this.email = email;
-    }
-    
-    public String getEmail(){
-        return email;
-    }
-    
-   public void setUserCards(List<Card> cards){
-       this.userCards = cards;
-   }
-   
-   public List<Card> getUserCards(){
-       return userCards;
-   }
-   
-   public void setUserAchievements(List<Achievement> achievements){
-       this.userAchievements = achievements;
-   }
-   
-   public List<Achievement> getUserAchievements(){
-       return userAchievements;
-   }
-   
-   public void setUserFriends(List<Friend> friends){
-       this.friends = friends;
-   }
-   
-   public List<Friend> getUserFriends(){
-       return friends;
-   }
+    private List<Achievement> userAchievements;
+
 }

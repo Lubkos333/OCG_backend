@@ -33,55 +33,7 @@ public class Card extends IdEntity{
     private String imagePath;
     
     @ManyToMany(mappedBy = "userCards") // List in User class
-    List<User> cardUsers;
-    
-    
-    public void setName(String name){
-        this.name = name;
-    }
-    
-    public String getName(){
-        return name;
-    }
-    
-    public void setDescription(String description){
-        this.description = description;
-    }
-    
-    public String getDescription(){
-        return description;
-    }
-    
-    public void setValue(int value){
-        this.value = value;
-    }
-    
-    public int getValue(){
-        return value;
-    }
-    
-    public void setAttack(int attack){
-        this.attack = attack;
-    }
-    
-    public int getAttack(){
-        return attack;
-    }
-    
-    public void setImagePath(String path){
-        this.imagePath = path;
-    }
-    
-    public String getImagePath(){
-        return imagePath;
-    }
-    
-    public void setCardUsers(List<User> users){
-        this.cardUsers = users;
-    }
-    
-    public List<User> getCardUsers(){
-        return cardUsers;
-    }
+    private List<User> cardUsers;
+
     
 }

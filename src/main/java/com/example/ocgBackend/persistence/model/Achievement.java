@@ -23,45 +23,12 @@ public class Achievement extends IdEntity {
     
     @Column(name = "achievement_name")
     private String name;
-    @Column(name = "achievemen_desc")
+    @Column(name = "achievement_desc")
     private String description;
-    @Column(name = "achievemen_thresold")
-    private int thresold;
+    @Column(name = "achievement_threshold")
+    private int threshold;
     
     @ManyToMany(mappedBy = "userAchievements") // List in User class
-    List<User> achievementUsers;
-    
-    public void setName(String name){
-        this.name = name;
-    }
-    
-    public String getName(){
-        return name;
-    }
-    
-    public void setDescription(String description){
-        this.description = description;
-    }
-    
-    public String getDescription(){
-        return description;
-    }
-    
-    public void setThresold(int thresold){
-        this.thresold = thresold;
-    }
-    
-    public int getThresold(){
-        return thresold;
-    }
-    
-    public void setAchievementUsers(List<User> users){
-        this.achievementUsers = users;
-    }
-    
-    public List<User> getAchievementUsers(){
-        return achievementUsers;
-    }
-
+    private List<User> achievementUsers;
     
 }
