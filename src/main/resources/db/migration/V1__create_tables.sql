@@ -1,6 +1,6 @@
 CREATE SEQUENCE achievements_id_seq;
 CREATE SEQUENCE cards_id_seq;
-CREATE SEQUENCE friends_id_seq;
+CREATE SEQUENCE friend_request_id_seq;
 CREATE SEQUENCE sessions_id_seq;
 CREATE SEQUENCE user_cards_id_seq;
 CREATE SEQUENCE user_achievements_id_seq;
@@ -9,8 +9,8 @@ CREATE SEQUENCE users_id_seq;
 CREATE TABLE achievements (
           id BIGINT NOT NULL DEFAULT nextval('achievements_id_seq'::regclass) PRIMARY key,
           achievement_name varchar(45) DEFAULT 'placeholder_value',
-          achievemen_desc varchar(45) DEFAULT 'placeholder_value',
-          achievemen_thresold int DEFAULT '-1'
+          achievement_desc varchar(45) DEFAULT 'placeholder_value',
+          achievement_threshold int DEFAULT '-1'
 );
 
 CREATE TABLE users (
@@ -30,8 +30,8 @@ CREATE TABLE cards (
           card_image varchar(200) DEFAULT NULL
 );
 
-CREATE TABLE friends (
-          id BIGINT NOT NULL DEFAULT nextval('friends_id_seq'::regclass) PRIMARY key,
+CREATE TABLE friend_request (
+          id BIGINT NOT NULL DEFAULT nextval('friend_request_id_seq'::regclass) PRIMARY key,
           user_1_ref int NOT NULL,
           user_2_ref int NOT NULL,
           pending int NOT NULL,
