@@ -5,6 +5,7 @@ CREATE SEQUENCE sessions_id_seq;
 CREATE SEQUENCE user_cards_id_seq;
 CREATE SEQUENCE user_achievements_id_seq;
 CREATE SEQUENCE users_id_seq;
+CREATE SEQUENCE room_id_seq;
 
 CREATE TABLE achievements (
           id BIGINT NOT NULL DEFAULT nextval('achievements_id_seq'::regclass) PRIMARY key,
@@ -62,4 +63,14 @@ CREATE TABLE user_cards (
           card_ref BIGINT NOT NULL,
           CONSTRAINT cards_card_ref FOREIGN KEY (card_ref) REFERENCES cards (id),
           CONSTRAINT cards_user_ref FOREIGN KEY (user_ref) REFERENCES users (id)
+);
+
+CREATE TABLE room (
+        id BIGINT NOT NULL DEFAULT nextval('room_id_seq'::regclass) PRIMARY key,
+        name VARCHAR(50),
+        state VARCHAR(50),
+        user_1_id BIGINT,
+        user_2_id BIGINT,
+        FOREIGN KEY (user_1_id) REFERENCES users (id),
+        FOREIGN KEY (user_2_id) REFERENCES users (id)
 );

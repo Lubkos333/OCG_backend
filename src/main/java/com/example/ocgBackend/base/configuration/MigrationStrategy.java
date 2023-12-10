@@ -1,5 +1,6 @@
 package com.example.ocgBackend.base.configuration;
 
+import com.example.ocgBackend.service.GameService;
 import lombok.extern.slf4j.Slf4j;
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Autowired;

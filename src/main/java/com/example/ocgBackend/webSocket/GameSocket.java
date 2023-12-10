@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 public class GameSocket {
 
     @MessageMapping("/send")
-    @SendTo("/result")
+    @SendTo("/game-get/result")
     public GameDto gameMessaging(GameDto gameDto) {
         return gameDto;
     }
