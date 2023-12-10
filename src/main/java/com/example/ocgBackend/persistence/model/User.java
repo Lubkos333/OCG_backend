@@ -1,15 +1,9 @@
 package com.example.ocgBackend.persistence.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import java.util.List;
-
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Table(name = "users")
 @Entity
@@ -25,7 +19,7 @@ public class User extends IdEntity {
     @Column(name = "user_password")
     private String password;
     @Column(name = "victory_count")
-    private int victoryCount;
+    private Integer victoryCount;
     @Column(name = "user_email")
     private String email;
     
@@ -34,9 +28,10 @@ public class User extends IdEntity {
 
     @ManyToMany
     @JoinTable(
-        name = "user_card",
+        name = "user_cards",
         joinColumns =
-        @JoinColumn(name = "user_ref"), inverseJoinColumns =
+            @JoinColumn(name = "user_ref"),
+        inverseJoinColumns =
             @JoinColumn(name = "card_ref")
         )
     private List<Card> userCards;

@@ -5,11 +5,12 @@ info:
 
 tags:
   - name: "user"
+  - name: "cards"
 
 paths:
   /rest/user/all:
     get:
-      summary: user preferences
+      summary: users
       operationId: getUserPreferences
       tags:
         - "user"
@@ -20,6 +21,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Users'
+  /rest/user/{userId}:
+    get:
+      summary: users
+      operationId: getUserById
+      parameters:
+          - in: path
+            name: userId
+            description: Id of the user we want
+            schema:
+              type: number
+            required: true
+      tags:
+        - "user"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
   /rest/user/test:
     post:
       summary: testOperation
@@ -35,16 +56,97 @@ paths:
       responses:
         '200':
           description: Successful operation
+  /rest/cards/all:
+    get:
+      summary: get all cards
+      operationId: getAllCards
+      tags:
+        - "cards"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cards'
+  /rest/cards/{userId}:
+    get:
+      summary: get Cards By User ID
+      operationId: getCardsByUserID
+      parameters:
+          - in: path
+            name: userId
+            description: Id of the user whose cards we want
+            schema:
+              type: number
+            required: true
+      tags:
+        - "cards"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cards'
 components:
   schemas:
     Users:
       type: array
       items:
         $ref: '#/components/schemas/UserDto'
+    Cards:
+      type: array
+      items:
+        $ref: '#/components/schemas/CardsDto'
+    CardsDto:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        description:
+          type: string
+        value:
+          type: number
+        attack:
+          type: number
+        image:
+          type: string
     UserDto:
       type: object
       properties:
+        id:
+          type: number
         name:
           type: string
+        password:
+          type: string
+        vicroryCount:
+          type: number
+        email:
+          type: string
+        friends:
+          type: array
+          items: 
+            $ref: '#/components/schemas/UserDto'
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardsDto'
+        Achievements:
+          type: array
+          items:
+            $ref: '#/components/schemas/AchievementDto'    
+    AchievementDto:
+     type: object
+     properties:
+        name: 
+          type: string
+        description:
+          type: string
+        threshold:
+          type: number
     TestDto:
       type: string
