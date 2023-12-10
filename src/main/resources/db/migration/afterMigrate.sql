@@ -21,5 +21,11 @@ INSERT INTO user_cards (user_ref, card_ref) VALUES('2','2');
 INSERT INTO user_cards (user_ref, card_ref) VALUES('3','1');
 INSERT INTO user_cards (user_ref, card_ref) VALUES('3','2');
 
+INSERT INTO room (name)
+VALUES ('/endpoint-one'),
+       ('/endpoint-two'),
+       ('/endpoint-three'),
+       ('/endpoint-four'),
+       ('/endpoint-five');
 
 

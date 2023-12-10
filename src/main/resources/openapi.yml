@@ -6,6 +6,7 @@ info:
 tags:
   - name: "user"
   - name: "cards"
+  - name: "game"
 
 paths:
   /rest/user/all:
@@ -89,6 +90,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Cards'
+  /rest/game/connect/{userId}:
+    get:
+      summary: get connection information
+      operationId: connect
+      parameters:
+          - in: path
+            name: userId
+            description: Id of the user which wants conection
+            schema:
+              type: number
+            required: true
+      tags:
+        - "game"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionDto'
+  /rest/game/disconnect/{userId}:
+    post:
+      summary: disconnect user from room
+      operationId: disconnectUser
+      parameters:
+          - in: path
+            name: userId
+            description: Id of the user which wants disconect
+            schema:
+              type: number
+            required: true
+      tags:
+        - "game"
+      responses:
+        '200':
+          description: Successful operation
 components:
   schemas:
     Users:
@@ -186,4 +223,22 @@ components:
         playedCards:
           type: array
           items:
-            type: number  
+            type: number
+    SessionDto:
+      type: object
+      properties:
+        socket: 
+          type: string
+        subscribe: 
+          type: string
+        send:
+          type: string
+        route:
+          type: string
+        
+    RoomState:
+      type: string
+      enum: 
+        - empty
+        - ready
+        - full
