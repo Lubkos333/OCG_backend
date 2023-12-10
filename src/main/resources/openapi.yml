@@ -150,3 +150,40 @@ components:
           type: number
     TestDto:
       type: string
+    GameDto:
+      type: object
+      properties:
+        state:
+          type: string
+        nowPlaying:
+          type: number
+        playerOne:
+          $ref: '#/components/schemas/PlayerDto'
+        playerTwo:
+          $ref: '#/components/schemas/PlayerDto'
+        lastMove:
+          $ref: '#/components/schemas/Move'
+    Move:
+      type: object
+      properties:
+        player:
+          type: number
+        cardPlayed:
+          type: number
+        playerOneHealth:
+          type: number
+        playerTwoHealth:
+          type: number
+    PlayerDto:
+      type: object
+      properties:
+        id:
+          type: number
+        cards:
+          type: array
+          items:
+            type: number
+        playedCards:
+          type: array
+          items:
+            type: number  
