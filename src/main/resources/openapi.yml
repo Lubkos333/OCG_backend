@@ -57,6 +57,26 @@ paths:
       responses:
         '200':
           description: Successful operation
+  /rest/user/onetimeSign/{userName}:
+    post:
+      summary: signUser
+      operationId: signUser
+      parameters:
+          - in: path
+            name: userName
+            description: sign user only for one time
+            schema:
+              type: string
+            required: true
+      tags:
+        - "user"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
   /rest/cards/all:
     get:
       summary: get all cards
