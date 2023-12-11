@@ -25,6 +25,11 @@ public class UserController implements UserApi, UserApiDelegate {
     }
 
     @Override
+    public ResponseEntity<UserDto> signUser(String userName) {
+        return userService.onetimeLogin(userName);
+    }
+
+    @Override
     public ResponseEntity<UserDto> getUserById(BigDecimal userId) {
         return userService.getUserById(userId.longValue());
     }

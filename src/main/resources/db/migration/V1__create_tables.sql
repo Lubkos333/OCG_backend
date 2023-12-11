@@ -17,9 +17,9 @@ CREATE TABLE achievements (
 CREATE TABLE users (
           id BIGINT NOT NULL DEFAULT nextval('users_id_seq'::regclass) PRIMARY key,
           user_name varchar(50) NOT NULL,
-          user_password varchar(45) NOT NULL,
+          user_password varchar(45),
           victory_count int DEFAULT '0',
-          user_email varchar(45) NOT NULL
+          user_email varchar(45)
 );
 
 CREATE TABLE cards (

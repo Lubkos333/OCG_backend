@@ -4,6 +4,7 @@ import com.example.ocgBackend.persistence.model.User;
 import com.example.ocgBackend.persistence.repositories.UserRepository;
 import com.example.ocgBackend.rest.api.dto.CardsDto;
 import com.example.ocgBackend.rest.api.dto.UserDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
     public ResponseEntity getAllUsers() {
         return ResponseEntity.ok(
@@ -43,6 +46,21 @@ public class UserService {
                         )
                         )
                 );
+    }
+
+    public ResponseEntity onetimeLogin(String name) {
+        if(userRepository.findByName(name).isEmpty()) {
+            userRepository.save(User.builder()
+                            .name(name)
+                            .build()
+            );
+        }
+        else {
+            throw new RuntimeException("User with this name is already signed in");
+        }
+        return ResponseEntity.ok(
+                modelMapper.map(userRepository.findByName(name).orElseThrow(), UserDto.class)
+        );
     }
     public ResponseEntity getUserById(Long id) {
         User user = userRepository.findById(id)
