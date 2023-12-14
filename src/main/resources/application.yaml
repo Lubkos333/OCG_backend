@@ -29,3 +29,10 @@ flyway-migrations:
       baseline-on-migrate: false
       clean: true
       runDefaultCallbacks: true
+
+logging:
+  level:
+    org.springframework:
+      messaging: trace
+      web:
+        socket: trace

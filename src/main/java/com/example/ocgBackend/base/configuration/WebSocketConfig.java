@@ -18,14 +18,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                         "/endpoint-three",
                         "/endpoint-four",
                         "/endpoint-five")
+                .setAllowedOriginPatterns("*")
                 .withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/game");
-        registry.setApplicationDestinationPrefixes("/game-get");
-
+        registry.enableSimpleBroker("/game-get");
     }
 
 }
